@@ -1,0 +1,33 @@
+# Python / Flask
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# ML artifacts (keep notebooks, ignore large binaries by default)
+*.h5
+*.pkl
+*.onnx
+mlruns/
+lightning_logs/
+
+# Data (PhysioNet-derived datasets stay in shared storage, not git)
+data/raw/
+*.csv
+*.parquet
+
+# Flask / web
+instance/
+*.log
+
+# Docker / AWS
+.aws/
+*.pem
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
