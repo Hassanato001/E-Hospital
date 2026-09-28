@@ -136,3 +136,4 @@ V1 build not yet scaffolded. Planned layout per PRD:
   escalation accuracy, clinician override rate, inappropriate-recommendation reports, data-quality failures.
 - Clinical (where validated): agreement with clinical criteria, sensitivity/specificity,
   appropriate escalation/referral rates. Optimize safety + usefulness, not alert volume.
+# E-Hospital
