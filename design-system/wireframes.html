@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Vita — Wireframes (Phase 0.2)</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); line-height: 1.5; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: var(--space-8) var(--space-4) 64px; }
+  header.hero { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-8); margin-bottom: var(--space-8); }
+  header.hero h1 { font-size: var(--text-3xl); }
+  header.hero p { color: var(--color-text-muted); margin-top: var(--space-2); }
+  section { margin-bottom: 40px; }
+  section > h2 { font-size: var(--text-xl); }
+  section > p.sub { color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-4); }
+  .phone { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); overflow: hidden; max-width: 420px; }
+  .phone .bar { background: var(--color-primary-600); color: #fff; padding: 12px 16px; font-weight: 700; }
+  .phone .body { padding: 16px; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4); align-items: start; }
+  .mrow { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .mcell { border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 10px; }
+  .mcell .l { font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; }
+  .mcell .v { font-size: var(--text-xl); font-weight: 700; }
+  .alertbox { border-radius: var(--radius-md); padding: 12px; margin-bottom: 12px; border: 1px solid; font-size: var(--text-sm); }
+  .a1 { background: var(--sev-1-bg); border-color: var(--sev-1-border); color: var(--sev-1-text); }
+  .btn { display: inline-block; border: none; font: inherit; font-weight: 600; padding: 10px 16px; border-radius: var(--radius-md); margin: 4px 8px 4px 0; cursor: pointer; }
+  .btn-p { background: var(--color-primary-600); color: #fff; width: 100%; }
+  .btn-s { background: var(--color-surface-muted); border: 1px solid var(--color-border); }
+  .field { margin-bottom: 10px; }
+  .field label { display: block; font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: 4px; }
+  .field .in { border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 10px; background: var(--color-surface-muted); font-size: var(--text-sm); }
+  .chart { height: 120px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: linear-gradient(to top, var(--color-primary-100) 30%, transparent 30%); position: relative; margin-bottom: 12px; }
+  .chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+  .tab { font-size: var(--text-xs); padding: 6px 12px; border-radius: var(--radius-full); border: 1px solid var(--color-border); background: var(--color-surface); }
+  .tab.on { background: var(--color-primary-600); color: #fff; border-color: var(--color-primary-600); }
+  .price { border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 8px; }
+  .price b { font-size: var(--text-lg); }
+  footer { color: var(--color-text-muted); font-size: var(--text-sm); margin-top: 32px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>Wireframes — Phase 0.2</h1>
+    <p>Low-fidelity layouts for the 5 user stories + auth + billing. Built on design tokens.</p>
+  </header>
+
+  <div class="grid2">
+    <section>
+      <h2>Dashboard (US-02)</h2>
+      <p class="sub">Today's snapshot at a glance.</p>
+      <div class="phone"><div class="bar">Vita · Today</div><div class="body">
+        <div class="mrow">
+          <div class="mcell"><div class="l">Heart rate</div><div class="v">72 bpm</div></div>
+          <div class="mcell"><div class="l">SpO₂</div><div class="v">98%</div></div>
+          <div class="mcell"><div class="l">Sleep</div><div class="v">7h 24m</div></div>
+          <div class="mcell"><div class="l">Steps</div><div class="v">8,432</div></div>
+        </div>
+        <div class="alertbox a1"><b>L1 · Monitor:</b> Resting HR above your usual range. <u>View</u></div>
+        <button class="btn btn-s">Trends</button><button class="btn btn-s">Check again</button>
+      </div></div>
+    </section>
+
+    <section>
+      <h2>Alert card (US-03 + US-04)</h2>
+      <p class="sub">Pattern + uncertainty + one clear action.</p>
+      <div class="phone"><div class="bar">Alert · L1 Monitor</div><div class="body">
+        <p><b>Resting heart rate above your usual range</b></p>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Seen across several readings. Recent exercise can raise resting HR — we've factored in your activity.</p>
+        <p style="font-size:var(--text-sm);margin-top:8px"><b>Do next:</b> rest and recheck when relaxed.</p>
+        <button class="btn btn-p">Check again</button>
+        <button class="btn btn-s">Contact a clinician</button>
+        <button class="btn btn-s">Dismiss</button>
+      </div></div>
+    </section>
+
+    <section>
+      <h2>Trends (US-05)</h2>
+      <p class="sub">Week/month lines vs personal baseline.</p>
+      <div class="phone"><div class="bar">Trends · Heart rate</div><div class="body">
+        <div class="tabs"><span class="tab">HR</span><span class="tab">SpO₂</span><span class="tab">Sleep</span><span class="tab">Steps</span><span class="tab on">Week</span><span class="tab">Month</span></div>
+        <div class="chart"><svg viewBox="0 0 300 120" preserveAspectRatio="none"><polyline points="0,80 40,75 80,78 120,60 160,62 200,55 240,58 300,50" fill="none" stroke="#0891b2" stroke-width="3"/><line x1="0" y1="70" x2="300" y2="70" stroke="#94a3b8" stroke-dasharray="6 4"/></svg></div>
+        <p style="font-size:var(--text-xs);color:var(--color-text-muted)">Solid = your readings · Dashed = your baseline</p>
+      </div></div>
+    </section>
+
+    <section>
+      <h2>Auth (US-01 prerequisite)</h2>
+      <p class="sub">BetterAuth email + verification.</p>
+      <div class="phone"><div class="bar">Welcome to Vita</div><div class="body">
+        <div class="field"><label>Email</label><div class="in">alex@example.com</div></div>
+        <div class="field"><label>Password</label><div class="in">••••••••••</div></div>
+        <button class="btn btn-p">Sign in</button>
+        <p style="font-size:var(--text-sm);margin-top:8px">New here? <u>Create account</u> → verify email → health profile → <b>connect data source</b> (one tap, no manual entry).</p>
+      </div></div>
+    </section>
+
+    <section>
+      <h2>Billing (Paystack)</h2>
+      <p class="sub">Plans + test-mode checkout.</p>
+      <div class="phone"><div class="bar">Plan</div><div class="body">
+        <div class="price"><b>Free</b><p style="font-size:var(--text-sm)">Dashboard + trends</p></div>
+        <div class="price" style="border-color:var(--color-primary-500)"><b>Plus · ₦2,500/mo</b><p style="font-size:var(--text-sm)">Alerts + clinician chat + reports</p></div>
+        <button class="btn btn-p">Pay with Paystack</button>
+        <p style="font-size:var(--text-xs);color:var(--color-text-muted)">Receipts by email (Zeptomail).</p>
+      </div></div>
+    </section>
+  </div>
+
+  <footer>Wireframes: <code>design-system/wireframes.html</code> · Tokens: <code>design-system/tokens.css</code></footer>
+</div>
+</body>
+</html>
