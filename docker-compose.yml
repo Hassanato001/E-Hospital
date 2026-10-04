@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-vita}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vita_dev_only}
+      POSTGRES_DB: ${POSTGRES_DB:-vita}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-vita}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  auth:
+    build: ./auth
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-vita}:${POSTGRES_PASSWORD:-vita_dev_only}@db:5432/${POSTGRES_DB:-vita}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-dev_secret_change_me}
+      BETTER_AUTH_URL: http://localhost:3001
+      AUTH_JWT_SECRET: ${AUTH_JWT_SECRET:-dev_jwt_change_me}
+      ZEPTOMAIL_TOKEN: ${ZEPTOMAIL_TOKEN:-}
+    ports:
+      - "3001:3001"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-vita}:${POSTGRES_PASSWORD:-vita_dev_only}@db:5432/${POSTGRES_DB:-vita}
+      AUTH_JWT_SECRET: ${AUTH_JWT_SECRET:-dev_jwt_change_me}
+      R2_ENDPOINT: ${R2_ENDPOINT:-}
+      R2_ACCESS_KEY: ${R2_ACCESS_KEY:-}
+      R2_SECRET_KEY: ${R2_SECRET_KEY:-}
+      R2_BUCKET: ${R2_BUCKET:-vita-dev}
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  worker:
+    build: ./backend
+    command: python worker.py
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-vita}:${POSTGRES_PASSWORD:-vita_dev_only}@db:5432/${POSTGRES_DB:-vita}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

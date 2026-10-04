@@ -1,0 +1,42 @@
+/* HealthGuard / Project Vita — Design Tokens (Phase 0.3) */
+:root {
+  /* Brand */
+  --color-primary-600: #0e7490;
+  --color-primary-500: #0891b2;
+  --color-primary-100: #cffafe;
+  --color-primary-50: #ecfeff;
+
+  /* Surfaces & text */
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1f5f9;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+
+  /* Severity (Alert Levels L0–L4) */
+  --sev-0-bg: #eff6ff; --sev-0-border: #bfdbfe; --sev-0-text: #1d4ed8; --sev-0-dot: #3b82f6;
+  --sev-1-bg: #fffbeb; --sev-1-border: #fde68a; --sev-1-text: #92400e; --sev-1-dot: #f59e0b;
+  --sev-2-bg: #fff7ed; --sev-2-border: #fed7aa; --sev-2-text: #9a3412; --sev-2-dot: #f97316;
+  --sev-3-bg: #fef2f2; --sev-3-border: #fecaca; --sev-3-text: #b91c1c; --sev-3-dot: #ef4444;
+  --sev-4-bg: #7f1d1d; --sev-4-border: #991b1b; --sev-4-text: #ffffff; --sev-4-dot: #ffffff;
+
+  /* Metric accents */
+  --metric-hr: #e11d48;
+  --metric-spo2: #0891b2;
+  --metric-sleep: #7c3aed;
+  --metric-activity: #16a34a;
+
+  /* Type */
+  --font-sans: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem;
+  --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem; --text-3xl: 1.875rem;
+
+  /* Shape & space */
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-full: 999px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+}

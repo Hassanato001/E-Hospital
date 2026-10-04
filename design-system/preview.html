@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Vita — Design System Preview</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); line-height: 1.5; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: var(--space-8) var(--space-4) 64px; }
+  header.hero { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-8); box-shadow: var(--shadow-sm); margin-bottom: var(--space-8); }
+  header.hero h1 { font-size: var(--text-3xl); }
+  header.hero p { color: var(--color-text-muted); margin-top: var(--space-2); }
+  section { margin-bottom: 40px; }
+  section > h2 { font-size: var(--text-xl); margin-bottom: var(--space-1); }
+  section > p.sub { color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-4); }
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); box-shadow: var(--shadow-sm); }
+  .grid { display: grid; gap: var(--space-4); }
+  .grid.cols-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .swatch { height: 56px; border-radius: var(--radius-sm); margin-bottom: var(--space-2); border: 1px solid rgba(0,0,0,.08); }
+  .token-name { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .token-val { font-weight: 600; font-size: var(--text-sm); }
+  /* Buttons */
+  .btn { display: inline-block; border: none; cursor: pointer; font: inherit; font-weight: 600;
+         padding: 10px 18px; border-radius: var(--radius-md); margin: 0 var(--space-2) var(--space-2) 0; }
+  .btn-primary { background: var(--color-primary-600); color: #fff; }
+  .btn-secondary { background: var(--color-surface-muted); color: var(--color-text); border: 1px solid var(--color-border); }
+  .btn-danger { background: #b91c1c; color: #fff; }
+  .btn-ghost { background: transparent; color: var(--color-primary-600); }
+  /* Alert cards */
+  .alert { border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-3); border: 1px solid; }
+  .alert .level { display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-xs); font-weight: 700;
+                  text-transform: uppercase; letter-spacing: .06em; margin-bottom: var(--space-2); }
+  .alert .dot { width: 10px; height: 10px; border-radius: var(--radius-full); }
+  .alert h3 { font-size: var(--text-base); margin-bottom: 4px; }
+  .alert p { font-size: var(--text-sm); }
+  .alert .actions { margin-top: var(--space-3); }
+  .alert .actions .btn { padding: 8px 14px; font-size: var(--text-sm); }
+  .sev-0 { background: var(--sev-0-bg); border-color: var(--sev-0-border); color: var(--sev-0-text); } .sev-0 .dot { background: var(--sev-0-dot); }
+  .sev-1 { background: var(--sev-1-bg); border-color: var(--sev-1-border); color: var(--sev-1-text); } .sev-1 .dot { background: var(--sev-1-dot); }
+  .sev-2 { background: var(--sev-2-bg); border-color: var(--sev-2-border); color: var(--sev-2-text); } .sev-2 .dot { background: var(--sev-2-dot); }
+  .sev-3 { background: var(--sev-3-bg); border-color: var(--sev-3-border); color: var(--sev-3-text); } .sev-3 .dot { background: var(--sev-3-dot); }
+  .sev-4 { background: var(--sev-4-bg); border-color: var(--sev-4-border); color: var(--sev-4-text); } .sev-4 .dot { background: var(--sev-4-dot); }
+  .sev-4 .btn-secondary { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.4); }
+  /* Metric cards */
+  .metric { border-left: 4px solid; }
+  .metric .label { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-muted); }
+  .metric .value { font-size: var(--text-2xl); font-weight: 700; }
+  .metric .delta { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .m-hr { border-color: var(--metric-hr); } .m-spo2 { border-color: var(--metric-spo2); }
+  .m-sleep { border-color: var(--metric-sleep); } .m-act { border-color: var(--metric-activity); }
+  /* Type scale */
+  .type-row { display: flex; align-items: baseline; gap: 16px; padding: 8px 0; border-bottom: 1px dashed var(--color-border); }
+  code.badge { font-family: var(--font-mono); font-size: var(--text-xs); background: var(--color-surface-muted);
+               padding: 2px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border); }
+  footer { color: var(--color-text-muted); font-size: var(--text-sm); margin-top: 48px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Project Vita — Design System</h1>
+    <p>HealthGuard vision · Phase 0.3 tokens + core components. Copy rule: communicate risk + next action — never a diagnosis.</p>
+  </header>
+
+  <section>
+    <h2>1 · Brand & severity colors</h2>
+    <p class="sub">Alert levels L0–L4 map 1:1 to the PRD escalation framework.</p>
+    <div class="grid cols-4">
+      <div class="card"><div class="swatch" style="background:var(--color-primary-600)"></div><div class="token-val">Primary 600</div><div class="token-name">--color-primary-600 · #0e7490</div></div>
+      <div class="card"><div class="swatch" style="background:var(--sev-0-dot)"></div><div class="token-val">L0 · Informational</div><div class="token-name">blue · no concern</div></div>
+      <div class="card"><div class="swatch" style="background:var(--sev-1-dot)"></div><div class="token-val">L1 · Monitor</div><div class="token-name">amber · worth watching</div></div>
+      <div class="card"><div class="swatch" style="background:var(--sev-2-dot)"></div><div class="token-val">L2 · Clinical follow-up</div><div class="token-name">orange · professional review</div></div>
+      <div class="card"><div class="swatch" style="background:var(--sev-3-dot)"></div><div class="token-val">L3 · Urgent</div><div class="token-name">red · prompt care</div></div>
+      <div class="card"><div class="swatch" style="background:var(--sev-4-bg);border:2px solid var(--sev-3-dot)"></div><div class="token-val">L4 · Emergency</div><div class="token-name">dark red · immediate action</div></div>
+      <div class="card"><div class="swatch" style="background:var(--color-surface-muted)"></div><div class="token-val">Surface muted</div><div class="token-name">#f1f5f9</div></div>
+      <div class="card"><div class="swatch" style="background:var(--color-text)"></div><div class="token-val">Text</div><div class="token-name">#0f172a</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2 · Metric accents</h2>
+    <p class="sub">One accent per vital — used for card edge, chart line, and badge.</p>
+    <div class="grid cols-4">
+      <div class="card metric m-hr"><div class="label">Heart rate</div><div class="value">72 <small style="font-size:1rem">bpm</small></div><div class="delta">Resting · within your usual range</div></div>
+      <div class="card metric m-spo2"><div class="label">SpO₂</div><div class="value">98<small style="font-size:1rem">%</small></div><div class="delta">Overnight average</div></div>
+      <div class="card metric m-sleep"><div class="label">Sleep</div><div class="value">7h 24m</div><div class="delta">2h 10m deep · usual bedtime</div></div>
+      <div class="card metric m-act"><div class="label">Activity</div><div class="value">8,432 <small style="font-size:1rem">steps</small></div><div class="delta">12% above your baseline</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3 · Alert cards (all five levels)</h2>
+    <p class="sub">PRD tone: explain the pattern, state uncertainty, recommend a next action.</p>
+
+    <div class="alert sev-0"><span class="level"><span class="dot"></span>L0 · Informational</span>
+      <h3>Your activity was lower than your usual level today.</h3>
+      <p>No concern — a gentle nudge only.</p></div>
+
+    <div class="alert sev-1"><span class="level"><span class="dot"></span>L1 · Monitor</span>
+      <h3>Resting heart rate above your usual range</h3>
+      <p>We've seen this across several readings. Recent exercise can raise resting HR, and we've factored in your activity. Consider monitoring it and logging any symptoms.</p>
+      <div class="actions"><button class="btn btn-secondary">Check again</button><button class="btn btn-ghost">Dismiss</button></div></div>
+
+    <div class="alert sev-2"><span class="level"><span class="dot"></span>L2 · Clinical follow-up</span>
+      <h3>Persistent change from your usual pattern</h3>
+      <p>Your recent measurements differ from baseline over multiple days. This may warrant professional evaluation.</p>
+      <div class="actions"><button class="btn btn-primary">Contact a clinician</button><button class="btn btn-secondary">Check again</button></div></div>
+
+    <div class="alert sev-3"><span class="level"><span class="dot"></span>L3 · Urgent</span>
+      <h3>Pattern suggests prompt medical attention</h3>
+      <p>Based on validated thresholds and your profile, please seek prompt care. If symptoms worsen, escalate immediately.</p>
+      <div class="actions"><button class="btn btn-danger">Find urgent care</button><button class="btn btn-secondary">Contact a clinician</button></div></div>
+
+    <div class="alert sev-4"><span class="level"><span class="dot"></span>L4 · Emergency</span>
+      <h3>Emergency pattern detected</h3>
+      <p>Call your local emergency number now. Share your emergency profile with responders if you can.</p>
+      <div class="actions"><button class="btn btn-secondary">Emergency help</button><button class="btn btn-secondary">Nearby facilities</button></div></div>
+  </section>
+
+  <section>
+    <h2>4 · Buttons</h2>
+    <p class="sub">Primary for main action · Secondary for alternatives · Danger reserved for urgent/emergency · Ghost for dismissal.</p>
+    <div class="card">
+      <button class="btn btn-primary">Contact a clinician</button>
+      <button class="btn btn-secondary">Check again</button>
+      <button class="btn btn-danger">Emergency help</button>
+      <button class="btn btn-ghost">Dismiss</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>5 · Type scale</h2>
+    <div class="card">
+      <div class="type-row"><code class="badge">3xl · 30px</code><span style="font-size:var(--text-3xl);font-weight:700">Dashboard greeting</span></div>
+      <div class="type-row"><code class="badge">2xl · 24px</code><span style="font-size:var(--text-2xl);font-weight:700">72 bpm</span></div>
+      <div class="type-row"><code class="badge">xl · 20px</code><span style="font-size:var(--text-xl);font-weight:600">Section heading</span></div>
+      <div class="type-row"><code class="badge">base · 16px</code><span style="font-size:var(--text-base)">Body copy and alert titles</span></div>
+      <div class="type-row"><code class="badge">sm · 14px</code><span style="font-size:var(--text-sm)">Supporting explanation</span></div>
+      <div class="type-row"><code class="badge">xs · 12px</code><span style="font-size:var(--text-xs)">Labels, levels, captions</span></div>
+    </div>
+  </section>
+
+  <footer>Tokens: <code>design-system/tokens.css</code> · This preview: <code>design-system/preview.html</code></footer>
+</div>
+</body>
+</html>
